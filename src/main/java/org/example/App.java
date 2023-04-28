@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,6 +18,7 @@ public class App {
         Biathlon biathlon = new Biathlon();
 
         ReadSaveAndSplitCSV reader = new ReadSaveAndSplitCSV();
+
         System.out.println(reader.readAndSaveCSV());
         System.out.println();
 
@@ -24,7 +26,7 @@ public class App {
         for (int i = 0; i < line.length; i++) {
             String[] words = reader.splitIntoWords(line[i]);
             try {
-                athlete.createAthleteFromCSV(words);
+                athlete.createAthlete(words);
                 athleteMap.put(athlete.finalResultInSeconds, athlete.athleteName);
 //                biathlon.addAthlete(athlete);
             } catch (ValidationException e) {

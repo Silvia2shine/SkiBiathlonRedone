@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static java.lang.System.*;
+
 /**
  * A  class that read and save  the CSV file.;
  *
@@ -22,6 +24,7 @@ public class ReadSaveAndSplitCSV {
             bytes = Files.readAllBytes(path);
         } catch (IOException e) {
             throw new RuntimeException(e);
+
         }
         String fileContent = new String(bytes, StandardCharsets.UTF_8);
         return fileContent;

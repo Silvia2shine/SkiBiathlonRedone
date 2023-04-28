@@ -1,5 +1,9 @@
 package org.example;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class AthleteTest {
@@ -29,9 +33,9 @@ class AthleteTest {
         Athlete athlete1 = new Athlete(99,
                 "Umar Jorgson", "SK", "30:27", ",xxxox",
                 "xxxxx", "xxoxo");
-        int calculate = athlete1.calculateTheFinalResultInSeconds();
+        int result = athlete1.calculateTheFinalResultInSeconds();
 
-        assertEquals(1857,calculate );
+        assertEquals(1857,result );
     }
 
     @org.junit.jupiter.api.Test
@@ -45,16 +49,35 @@ class AthleteTest {
     }
 
     @org.junit.jupiter.api.Test
-    void createAthleteFromCSV() throws ValidationException {
-        Athlete athlete1 = new Athlete(99,
+    void createAndOrderAthlete() throws ValidationException {
+        Map<Integer, String> athleteMap = new TreeMap<>();
+        Athlete athlete = new Athlete(99,
                 "Umar Jorgson", "SK", "30:27", ",xxxox",
                 "xxxxx", "xxoxo");
 
-        String line = "11,Umar Jorgson,SK,30:27,xxxox,xxxxx,xxoxo";
-        String[] tokensWord = line.split(",");
+        String line1 = "11,Umar Jorgson,SK,30:27,xxxox,xxxxx,xxoxo";
+        String[] tokensWord1 = line1.split(",");
+        athlete.createAthlete(tokensWord1);
 
-        assertEquals(new Athlete(11,"Umar Jorgson","SK",
-                "30:27",",xxxox","xxxxx", "xxoxo"),
-                athlete1.createAthleteFromCSV(tokensWord));
+        athleteMap.put(athlete.finalResultInSeconds,athlete.athleteName);
+
+
+        String line2 = "1,Jimmy Smiles,UK,29:15,xxoox,xooxo,xxxxo";
+        String[] tokensWord2 = line2.split(",");
+        athlete.createAthlete(tokensWord2);
+
+        athleteMap.put(athlete.finalResultInSeconds,athlete.athleteName);
+
+        String line3 = "27,Piotr Smitzer,CZ,30:10,xxxxx,xxxxx,xxxxx";
+        String[] tokensWord3 = line3.split(",");
+        athlete.createAthlete(tokensWord3);
+
+        athleteMap.put(athlete.finalResultInSeconds,athlete.athleteName);
+
+        Map<Integer, String> expectedMap = new HashMap<>();
+        expectedMap.put(1810, "Piotr Smitzer");
+        expectedMap.put(1815, "Jimmy Smiles");
+        expectedMap.put(1857, "Umar Jorgson");
+        assertEquals(expectedMap,athleteMap );
     }
 }
