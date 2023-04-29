@@ -6,17 +6,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static java.lang.System.*;
-
 /**
  * A  class that read and save  the CSV file.;
  *
  * @param - file path;
  * @param - path;
  */
-public class ReadSaveAndSplitCSV {
+public class ReaderAndSplitterCSV {
 
-    public String readAndSaveCSV() {
+    public String readerCSV() {
         String filePath = "results.csv";
         Path path = Paths.get(filePath);
         byte[] bytes;
@@ -29,12 +27,12 @@ public class ReadSaveAndSplitCSV {
         String fileContent = new String(bytes, StandardCharsets.UTF_8);
         return fileContent;
     }
-    public String[] splitIntoLines(String line) {
+    public String[] splitterIntoLines(String line) {
         String[] tokensSentences = line.split("\n");
         return tokensSentences;
     }
 
-    public String[] splitIntoWords(String line) {
+    public String[] splitterIntoWords(String line) {
 
 
         String[] tokensWord = line.split(",");

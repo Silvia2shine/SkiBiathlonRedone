@@ -58,7 +58,7 @@ public class Athlete {
      * @param - sec;
      * @param - resultInSec;
      */
-    public int transformSkiTimeResultInSec(String resultRead)  {
+    public int transformerForSkiTimeResultInSec(String resultRead)  {
 
         int resultInSec = 0;
 
@@ -69,16 +69,16 @@ public class Athlete {
 
         return resultInSec;
     }
-    public int calculateTheFinalResultInSeconds()  {
+    public int calculatorTheFinalResultInSeconds()  {
 
-        finalResultInSeconds = transformSkiTimeResultInSec(skiTimeResult) +
+        finalResultInSeconds = transformerForSkiTimeResultInSec(skiTimeResult) +
                 calculatorPenalties(firstShooting) +
                 calculatorPenalties(secondShooting) +
                 calculatorPenalties(thirdShooting);
 
         return finalResultInSeconds;
     }
-    public String transformFinalResultMInAndSec(int totalSeconds) {
+    public String transformerFinalResultMInAndSec(int totalSeconds) {
         int minutes = totalSeconds / 60;
         int seconds = totalSeconds % 60;
         if (seconds >= 60) {
@@ -92,7 +92,7 @@ public class Athlete {
     public int getFinalResultInSeconds() {
         return finalResultInSeconds;
     }
-    public Athlete createAthleteFromCSV(String[] tokensWord) throws ValidationException {
+    public Athlete createrForAthlete(String[] tokensWord) throws ValidationException {
 
         for (int i = 0; i < tokensWord.length; i++) {
 
@@ -136,11 +136,11 @@ public class Athlete {
         System.out.println("First penalty: " + calculatorPenalties(tokensWord[4]));
         System.out.println("Second penalty: " + calculatorPenalties(tokensWord[5]));
         System.out.println("Third penalty: " + calculatorPenalties(tokensWord[6]));
-        finalResultInSeconds = calculateTheFinalResultInSeconds();
+        finalResultInSeconds = calculatorTheFinalResultInSeconds();
         System.out.println("Final result in seconds: "
                 + finalResultInSeconds);
         System.out.println("Final result in min/sec: "
-                + transformFinalResultMInAndSec(finalResultInSeconds));
+                + transformerFinalResultMInAndSec(finalResultInSeconds));
         System.out.println();
         Athlete athlete = new Athlete(athleteNumber,athleteName,countryCode,
                 skiTimeResult,firstShooting, secondShooting,thirdShooting);
